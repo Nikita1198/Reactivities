@@ -16,7 +16,10 @@ using Persistence;
 using MediatR;
 using Application.Activities;
 using Application.Core;
+using FluentValidation.AspNetCore;
 using API.Extentions;
+using FluentValidation;
+using API.Middlewere;
 
 namespace API
 {
@@ -33,15 +36,27 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            // New way of Validation
+            services.AddFluentValidationAutoValidation();
+            services.AddValidatorsFromAssemblyContaining<Create>();
+            services.AddValidatorsFromAssemblyContaining<Edit>();
+            // Old way
+            // services.AddFluentValidation(config => 
+            // {
+            //     config.RegisterValidatorsFromAssemblyContaining<Create>();
+            // });
+
             services.AddApplicationServices(_config);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseMiddleware<ExceptionMiddlewere>();
+
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPIv5 v1"));
             }
