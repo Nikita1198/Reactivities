@@ -23,7 +23,7 @@ export default observer(function HomePage() {
         {userStore.isLoggedIn ? (
           <>
             <Header as="h2" inverted content="Welcom to Reactivities" />
-            <Button as={Link} to="/activities" size="huge" inverted>
+            <Button as={Link} to="/activities" size="large" inverted>
               Go to Activities!
             </Button>
           </>
@@ -31,14 +31,14 @@ export default observer(function HomePage() {
           <>
             <Button
               onClick={() => modalStore.openModal(<LoginForm />)}
-              size="huge"
+              size="large"
               inverted
             >
               Login
             </Button>
             <Button
               onClick={() => modalStore.openModal(<RegisterForm/>)}
-              size="huge"
+              size="large"
               inverted
             >
               Register
