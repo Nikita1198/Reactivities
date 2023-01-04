@@ -9,15 +9,19 @@ const actions = [{ icon:  <SportsBarIcon/> , name: 'Create Activity', path: '/cr
 
 export default observer(function FloatingAction() {
     const history = useHistory();
-    const{activityStore} = useStore();
+    const{activityStore, commonStore, profileStore} = useStore();
     const{loadingInitial} = activityStore;
+    const{appLoaded} = commonStore;
+    const{loadingProfile} = profileStore;
 
     function handleRederect(path: string) {
         history.push(path);
     }
 
     return (<>
-    {!loadingInitial &&
+    {!loadingInitial && 
+    !loadingProfile &&
+    appLoaded &&
         <SpeedDial
         ariaLabel="SpeedDial basic example"
         sx={{ position: 'fixed', bottom: 16, right: 16 }}
