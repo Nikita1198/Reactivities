@@ -16,6 +16,7 @@ import { useStore } from "../stores/store";
 import LoadingComponents from "./LoadingComponents";
 import ModalContainer from "../common/modals/ModalContainer";
 import ProfilePage from "../../features/profiles/ProfilePage";
+import FloatingAction from "./FloatingAction";
 
 function App() {
   const location = useLocation();
@@ -57,6 +58,7 @@ function App() {
                 <Route component={NotFound} />
               </Switch>
             </Container>
+            <FloatingAction />
           </>
         )}
       />

@@ -1,3 +1,4 @@
+import { useMediaQuery } from '@mui/material';
 import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { Grid } from 'semantic-ui-react';
@@ -11,6 +12,9 @@ export default observer(function ActivityDashboard() {
     const{activityStore} = useStore();
     const{loadingInitial, loadActivities, activityRegistry} = activityStore;
 
+    // Some style Improvements
+    const matches = useMediaQuery('(min-width:768px)');
+
     React.useEffect(() => {
         if(activityRegistry.size <= 1) {
             loadActivities();
@@ -21,12 +25,12 @@ export default observer(function ActivityDashboard() {
 
     return (
         <Grid>
-            <Grid.Column width="10">
+            <Grid.Column width={matches ? "11" : '16'}>
                 <ActivityList />
             </Grid.Column>
-            <Grid.Column width="6">
+            {matches && <Grid.Column width="5">
                 <ActivityFilters/>
-            </Grid.Column>
+            </Grid.Column>}
         </Grid>
     )
 })
