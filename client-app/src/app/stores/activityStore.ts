@@ -62,10 +62,12 @@ export default class ActivityStore {
           this.selectedActivity = activity;
         });
         this.setLoadingInitial(false);
+        this.loading = false;
         return activity;
       } catch (error) {
         console.log(error);
         this.setLoadingInitial(false);
+        this.loading = false;
       }
     }
   };
