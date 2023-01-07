@@ -1,29 +1,66 @@
+import { Avatar, AvatarGroup } from "@mui/material";
 import { observer } from "mobx-react-lite";
 import React from "react";
-import { Link } from "react-router-dom";
-import { List, Image, Popup} from "semantic-ui-react";
 import { Profile } from "../../../app/models/profile";
 import ProfileCard from "../../profiles/ProfileCard";
+import Popover from '@mui/material/Popover';
+import { Link } from "react-router-dom";
 
 interface Props {
     attendees: Profile[];
+    host: Profile | undefined;
 }
 
-export default observer(function ActivityListItemAttendee({attendees}: Props) {
+export default observer(function ActivityListItemAttendee({attendees, host}: Props) {
+    const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
+
+    const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>) => {
+      setAnchorEl(event.currentTarget);
+    };
+  
+    const handlePopoverClose = () => {
+      setAnchorEl(null);
+    };
+
+    const open = Boolean(anchorEl);
+
     return (
-        <List horizontal>
+        <AvatarGroup max={2}>
             {attendees.map(attendee => (
-                <Popup
-                    hoverable
-                    key={attendee.username}
-                    trigger={
-                        <List.Item key={attendee.username} as={Link} to={`/profiles/${attendee.username}`}>
-                            <Image size="mini" circular src={attendee.image || "/assets/user.png"} />
-                        </List.Item>
-                    }>
-                    <ProfileCard profile={attendee}/> 
-                </Popup>
+                <Link key={attendee.username} 
+                        to={`/profiles/${attendee.username}`}>
+                    <Avatar 
+                        key={attendee.username}
+                        onMouseEnter={handlePopoverOpen}
+                        onMouseLeave={handlePopoverClose}
+                        aria-owns={attendee.username}
+                        aria-haspopup="true"
+                        sx={{backgroundColor: "rgba(210,180,140,1)"}}
+                        src={attendee.image || "/assets/user.png"} />
+                    <Popover
+                        id={attendee.username}
+                        disableScrollLock
+                        sx={{
+                            pointerEvents: 'none',
+                        }}
+                        open={open}
+                        anchorEl={anchorEl}
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'left',
+                        }}
+                        transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'left',
+                        }}
+                        transitionDuration={300}
+                        onClose={handlePopoverClose}
+                        disableRestoreFocus
+                    >
+                        <ProfileCard profile={attendee}/> 
+                    </Popover>
+                </Link>
             ))}
-        </List>
+        </AvatarGroup>
     )
 })

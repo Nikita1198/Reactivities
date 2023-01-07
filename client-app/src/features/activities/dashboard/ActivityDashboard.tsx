@@ -24,11 +24,11 @@ export default observer(function ActivityDashboard() {
     if (loadingInitial) return <LoadingComponents content="Loading activities..." />
 
     return (
-        <Grid>
-            <Grid.Column width={matches ? "11" : '16'}>
+        <Grid >
+            <Grid.Column style={{pt: 0}} width={matches ? "11" : '16'}>
                 <ActivityList />
             </Grid.Column>
-            {matches && <Grid.Column width="5">
+            {matches && <Grid.Column style={{paddingTop: 0}} width="5">
                 <ActivityFilters/>
             </Grid.Column>}
         </Grid>
