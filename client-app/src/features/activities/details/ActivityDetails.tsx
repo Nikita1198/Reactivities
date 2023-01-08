@@ -1,3 +1,4 @@
+import { Box, Stack } from '@mui/material';
 import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { useParams } from 'react-router-dom';
@@ -22,15 +23,19 @@ export default observer(function ActivityDetails() {
     if(loadingInitial || !activity) return <LoadingComponents />;
 
     return (
-        <Grid>
-            <Grid.Column width={10}>
+        <Stack 
+            direction={{ xs: 'column', sm: 'row' }}
+            spacing={{ xs: 2, sm: 2, md: 3 }}
+            >
+            <Stack spacing={1}>
                 <ActivityDetailedHeader activity={activity}/>
                 <ActivityDetailedInfo activity={activity}/>
-                <ActivityDetailedChat activityId={activity.id}/>
-            </Grid.Column>
-            <Grid.Column  width={6}>
+                {activity.isGoing && 
+                <ActivityDetailedChat activityId={activity.id}/>}
+            </Stack>
+            <Stack spacing={1} sx={{minWidth: 200}}>
                 <ActivityDetailedSidebar activity={activity}/>
-            </Grid.Column>
-        </Grid>
+            </Stack>
+        </Stack>
     )
 })

@@ -17,6 +17,7 @@ import LoadingComponents from "./LoadingComponents";
 import ModalContainer from "../common/modals/ModalContainer";
 import ProfilePage from "../../features/profiles/ProfilePage";
 import FloatingAction from "./FloatingAction";
+import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 
 function App() {
   const location = useLocation();
@@ -42,7 +43,7 @@ function App() {
         render={() => (
           <>
             <NavBar />
-            <Container style={{ marginTop: "7em" }}>
+            <Container style={{ marginTop: "7em", padding:'1px' }}>
               <Switch>
                 <Route exact path="/activities" component={ActivityDashboard} />
                 <Route path="/activities/:id" component={ActivityDetails} />

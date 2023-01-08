@@ -25,7 +25,9 @@ export default observer(function ActivityDashboard() {
 
     return (
         <Grid >
-            <Grid.Column style={{pt: 0}} width={matches ? "11" : '16'}>
+            <Grid.Column 
+                style={{paddingTop: 0, padding: matches ? '' : '1px'}} 
+                width={matches ? "11" : '16'}>
                 <ActivityList />
             </Grid.Column>
             {matches && <Grid.Column style={{paddingTop: 0}} width="5">

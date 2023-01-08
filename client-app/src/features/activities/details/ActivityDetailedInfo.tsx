@@ -13,20 +13,20 @@ export default observer(function ActivityDetailedInfo({activity}: Props) {
         <Segment.Group>
             <Segment attached='top'>
                 <Grid>
-                    <Grid.Column width={1}>
+                    <Grid.Column width={2}>
                         <Icon size='large' color='teal' name='info'/>
                     </Grid.Column>
-                    <Grid.Column width={15}>
+                    <Grid.Column width={10}>
                         <p>{activity.description}</p>
                     </Grid.Column>
                 </Grid>
             </Segment>
             <Segment attached>
                 <Grid verticalAlign='middle'>
-                    <Grid.Column width={1}>
+                    <Grid.Column width={2}>
                         <Icon name='calendar' size='large' color='teal'/>
                     </Grid.Column>
-                    <Grid.Column width={15}>
+                    <Grid.Column width={10}>
             <span>
               {format(activity.date!, 'dd MMM yyyy h:mm aa')}
             </span>
@@ -35,10 +35,10 @@ export default observer(function ActivityDetailedInfo({activity}: Props) {
             </Segment>
             <Segment attached>
                 <Grid verticalAlign='middle'>
-                    <Grid.Column width={1}>
+                    <Grid.Column width={2}>
                         <Icon name='marker' size='large' color='teal'/>
                     </Grid.Column>
-                    <Grid.Column width={11}>
+                    <Grid.Column width={10}>
                         <span>{activity.venue}, {activity.city}</span>
                     </Grid.Column>
                 </Grid>

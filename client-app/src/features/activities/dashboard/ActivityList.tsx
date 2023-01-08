@@ -1,4 +1,4 @@
-import { Divider, Typography } from '@mui/material';
+import { Box, Divider, Typography } from '@mui/material';
 import { observer } from 'mobx-react-lite';
 import { Fragment } from 'react';
 import { useStore } from '../../../app/stores/store';
@@ -11,7 +11,7 @@ export default observer(function ActivityList() {
     return (
         <>
             {groupedActivities.map(([group, activities]) =>(
-                <Fragment key={group}>
+                <Box key={group} sx={{padding:0, pb: 1}}>
                     <Divider textAlign="left">
                         <Typography variant="body1" >
                             {group}
@@ -20,7 +20,7 @@ export default observer(function ActivityList() {
                     {activities.map(activity => (
                     <ActivityListItem key={activity.id} activity={activity}/>  
                     ))}
-                </Fragment>
+                </Box>
             ))}
         </>
     )

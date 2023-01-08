@@ -25,7 +25,15 @@ export default observer(function ActivityListItemAttendee({attendees, host}: Pro
     const open = Boolean(anchorEl);
 
     return (
-        <AvatarGroup max={2}>
+        <AvatarGroup 
+            max={2} 
+            sx={{
+                "& .MuiAvatar-root": { 
+                    width:'2.2em', 
+                    height: '2.2em', 
+                    fontSize: 15,
+                    border: '2px solid',}
+            }}>
             {attendees.map(attendee => (
                 <Link key={attendee.username} 
                         to={`/profiles/${attendee.username}`}>
@@ -35,7 +43,6 @@ export default observer(function ActivityListItemAttendee({attendees, host}: Pro
                         onMouseLeave={handlePopoverClose}
                         aria-owns={attendee.username}
                         aria-haspopup="true"
-                        sx={{backgroundColor: "rgba(210,180,140,1)"}}
                         src={attendee.image || "/assets/user.png"} />
                     <Popover
                         id={attendee.username}
