@@ -10,7 +10,7 @@ import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
 import { Link } from "react-router-dom";
 import { Activity } from "../../../app/models/activity";
 import ActivityListItemAttendee from "./ActivityListItemAttendee";
-import { Alert, Chip, Stack, Tooltip } from "@mui/material";
+import { Chip, Stack, Tooltip } from "@mui/material";
 import { Box } from "@mui/system";
 import { atcb_action } from 'add-to-calendar-button';
 import CancelTwoToneIcon from '@mui/icons-material/CancelTwoTone';
