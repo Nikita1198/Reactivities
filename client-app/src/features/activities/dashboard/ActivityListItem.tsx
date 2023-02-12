@@ -51,7 +51,7 @@ export default function ActivityListItem({ activity }: Prop) {
                   color={(activity.isGoing || activity.isCancelled) ? "secondary" : 'primary'} 
                   icon={<AccessTimeIcon />} 
                   disabled={activity.isCancelled}
-                  label={format(activity.date!, "h:mm aa")} 
+                  label={format(activity.date!, "H:mm")} 
                   onClick={e => {
                     e.preventDefault();
                     atcb_action({
@@ -102,7 +102,7 @@ export default function ActivityListItem({ activity }: Prop) {
             {(!activity.isGoing || activity.isCancelled) && 
             <>
               <Tooltip title="Check out the new activity!" followCursor>
-                <Typography variant="h6" className="card-label">
+                <Typography variant="h6">
                     <Link to={`/activities/${activity.id}`}>
                       {activity.title}
                     </Link>

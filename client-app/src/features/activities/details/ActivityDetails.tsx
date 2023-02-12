@@ -1,8 +1,7 @@
-import { Box, Stack } from '@mui/material';
+import { Stack } from '@mui/material';
 import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { Grid } from 'semantic-ui-react';
 import LoadingComponents from '../../../app/layout/LoadingComponents';
 import { useStore } from '../../../app/stores/store';
 import ActivityDetailedChat from './ActivityDetailedChat';
@@ -30,8 +29,7 @@ export default observer(function ActivityDetails() {
             <Stack spacing={1}>
                 <ActivityDetailedHeader activity={activity}/>
                 <ActivityDetailedInfo activity={activity}/>
-                {activity.isGoing && 
-                <ActivityDetailedChat activityId={activity.id}/>}
+                <ActivityDetailedChat activityId={activity.id}/>
             </Stack>
             <Stack spacing={1} sx={{minWidth: 200}}>
                 <ActivityDetailedSidebar activity={activity}/>
